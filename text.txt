@@ -1,0 +1,27 @@
+dim streaming As Boolean = True
+
+dim firstHymnStart As Integer = 3
+dim firstHymnNumberOfVerses As Integer = 3
+
+dim secondHymnStart As Integer = 41
+dim secondHymnNumberOfVerses As Integer = 4
+
+dim thirdHymnStart As Integer = 52
+dim thirdHymnNumberOfVerses As Integer = 4
+
+dim fourthHymnStart As Integer = -1
+dim fourthHymnNumberOfVerses As Integer = -1
+
+dim firstReadingStart As Integer = 15
+dim firstReadingEnd As Integer = 18
+
+dim anthemStart As Integer = 41
+
+dim secondReadingStart As Integer = -1
+dim secondReadingEnd As Integer = -1
+
+dim firstGospelVerse As Integer = 23
+dim secondGospelVerse As Integer = -1
+
+dim serviceEnd As Integer = 58
+

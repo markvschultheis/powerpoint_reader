@@ -1,0 +1,164 @@
+dim streaming As Boolean = True
+
+dim firstHymnStart As Integer = -1
+dim firstHymnNumberOfVerses As Integer = -1
+
+dim secondHymnStart As Integer = 36
+dim secondHymnNumberOfVerses As Integer = 5
+
+dim thirdHymnStart As Integer = -1
+dim thirdHymnNumberOfVerses As Integer = -2
+
+dim fourthHymnStart As Integer = -1
+dim fourthHymnNumberOfVerses As Integer = -1
+
+dim firstReadingStart As Integer = 15
+dim firstReadingEnd As Integer = 18
+
+dim anthemStart As Integer = -1
+
+dim secondReadingStart As Integer = 20
+dim secondReadingEnd As Integer = 23
+
+dim firstGospelVerse As Integer = 24
+dim secondGospelVerse As Integer = 29
+
+dim serviceEnd As Integer = 55
+
+dim powerpoint As Object = Input.Find(1)
+dim camera As Object = Input.Find(2)
+dim audio As Object = Input.Find(3)
+dim anthem As Object = Input.Find(4)
+dim firstReading As Object = Input.Find(6)
+dim secondReading As Object = Input.Find(7)
+dim firstHymn As Object = Input.Find(9)
+dim gospelVerse As Object = Input.Find(10)
+dim secondHymn As Object = Input.Find(11)
+dim thirdHymn As Object = Input.Find(12)
+dim fourthHymn As Object = Input.Find(13)
+dim title As Object = Input.Find(14)
+dim currentSlide As Integer= Input.Find("NewsHD4.xaml").Text("Headline")
+currentSlide = currentSlide + 1
+Input.Find("NewsHD4.xaml").Text("Headline") = currentSlide
+
+If (currentSlide = firstHymnStart) then firstHymn.function("Restart")
+If (currentSlide = secondHymnStart) then secondHymn.function("Restart")
+If (currentSlide = thirdHymnStart) then thirdHymn.function("Restart")
+If (currentSlide = fourthHymnStart) then fourthHymn.function("Restart")
+
+If streaming
+
+If (currentSlide = firstReadingStart) then
+firstReading.function("Restart")
+firstReading.function("Fade")
+End If
+
+If (currentSlide = secondReadingStart) then
+secondReading.function("Restart")
+secondReading.function("Fade")
+End If
+If (currentSlide = serviceEnd) then
+powerpoint.function("OverlayInput1Off")
+title.function("OverlayInput2Off")
+powerpoint.function("Fade")
+
+API.function("StopStreaming")
+End If
+End If
+
+If streaming
+If ((currentSlide >= firstHymnStart) and currentSlide < (firstHymnStart + firstHymnNumberOfVerses)) then
+audio.function("AudioOff")
+firstHymn.function("AudioOn")
+firstHymn.function("Play")
+powerpoint.function("OverlayInput1Off")
+title.function("OverlayInput2Off")
+powerpoint.function("Fade")
+
+Else If (currentSlide >= firstReadingStart) and (currentSlide <= firstReadingEnd)
+audio.function("AudioOff")
+powerpoint.function("OverlayInput1In")
+title.function("OverlayInput2Off")
+firstReading.function("Play")
+
+Else If (currentSlide = anthemStart)
+audio.function("AudioOff")
+powerpoint.function("OverlayInput1Off")
+title.function("OverlayInput2Off")
+anthem.function("Fade")
+anthem.function("SetOutputFullscreen")
+
+Else If (currentSlide >= secondReadingStart) and (currentSlide <= secondReadingEnd)
+audio.function("AudioOff")
+powerpoint.function("OverlayInput1In")
+title.function("OverlayInput2Off")
+secondReading.function("Play")
+
+Else If (currentSlide = firstGospelVerse) then
+powerpoint.function("SetOutputFullscreen")
+camera.function("Fade")
+powerpoint.function("OverlayInput1In")
+title.function("OverlayInput2In")
+audio.function("AudioOn")
+firstHymn.function("AudioOff")
+secondHymn.function("AudioOff")
+gospelVerse.function("AudioOff")
+thirdHymn.function("AudioOff")
+Sleep(2000)
+powerpoint.function("SetOutputFullscreen")
+camera.function("Fade")
+audio.function("AudioOff")
+powerpoint.function("OverlayInput1In")
+title.function("OverlayInput2In")
+gospelVerse.function("Restart")
+gospelVerse.function("AudioOn")
+gospelVerse.function("Play")
+
+Else If (currentSlide = secondGospelVerse) then
+powerpoint.function("SetOutputFullscreen")
+camera.function("Fade")
+audio.function("AudioOff")
+powerpoint.function("OverlayInput1In")
+title.function("OverlayInput2In")
+gospelVerse.function("Restart")
+gospelVerse.function("AudioOn")
+gospelVerse.function("Play")
+
+Else If (currentSlide >= secondHymnStart and currentSlide < (secondHymnStart + secondHymnNumberOfVerses)) then
+audio.function("AudioOff")
+secondHymn.function("AudioOn")
+secondHymn.function("Play")
+powerpoint.function("OverlayInput1Off")
+title.function("OverlayInput2Off")
+powerpoint.function("Fade")
+
+Else If (currentSlide >= thirdHymnStart and currentSlide < (thirdHymnStart + thirdHymnNumberOfVerses)) then
+audio.function("AudioOff")
+thirdHymn.function("AudioOn")
+thirdHymn.function("Play")
+powerpoint.function("OverlayInput1Off")
+title.function("OverlayInput2Off")
+powerpoint.function("Fade")
+
+Else If (currentSlide >= fourthHymnStart and currentSlide < (fourthHymnStart + fourthHymnNumberOfVerses)) then
+audio.function("AudioOff")
+fourthHymn.function("AudioOn")
+fourthHymn.function("Play")
+powerpoint.function("OverlayInput1Off")
+title.function("OverlayInput2Off")
+powerpoint.function("Fade")
+
+Else
+If (streaming and currentSlide <> serviceEnd) then
+powerpoint.function("SetOutputFullscreen")
+camera.function("Fade")
+powerpoint.function("OverlayInput1In")
+title.function("OverlayInput2In")
+audio.function("AudioOn")
+firstHymn.function("AudioOff")
+secondHymn.function("AudioOff")
+gospelVerse.function("AudioOff")
+thirdHymn.function("AudioOff")
+End If
+End If
+End If
