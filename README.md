@@ -1,1 +1,1 @@
-# powerpoint_reader
+Reads church powerpoint and determines when each event happens (i.e. hymn 1, reading 1, etc.). Generates script for VMix Live Streaming Service to read and follow to coordinate streaming events (i.e. change camera view, play video, etc.) with the correct slide on slide show.
